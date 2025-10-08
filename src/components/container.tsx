@@ -7,7 +7,10 @@ function Container({
   ...props
 }: React.ComponentProps<"div">) {
   return (
-    <div className={cn("w-100vw h-100vh p-24 m-0", className)} {...props}>
+    <div
+      className={cn("w-100vw h-100vh px-24 m-0 bg-gray-100", className)}
+      {...props}
+    >
       {children}
     </div>
   );
