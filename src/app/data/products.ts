@@ -39,6 +39,6 @@ export const products = [
     title: "Beef",
     category: "Proteins",
     price: 5,
-    image: "/../../../assets/product.jpg",
+    image: "../../assets/product.jpg",
   },
 ];
