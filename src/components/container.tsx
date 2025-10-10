@@ -11,10 +11,7 @@ function Container({
     <div className="w-full">
       <Navbar />
       <div
-        className={cn(
-          "w-full h-full px-10 sm:px-24 m-0 bg-gray-100",
-          className
-        )}
+        className={cn("w-full h-full px-10 sm:px-24 m-0 bg-white", className)}
         {...props}
       >
         {children}
