@@ -8,15 +8,15 @@ import cover from "../../assets/cover.jpeg";
 export default function Homepage() {
   return (
     <div className="w-full h-full flex flex-col space-y-16 ">
-      <div className="w-full">
+      <div className="hdden sm:w-full">
         <img
-          className="relative z-1  object-fit opacity-10 w-full  h-[650px]"
+          className=" hidden sm:relative sm:z-1  object-fit opacity-10 w-full  sm:h-[650px]"
           src={cover}
         ></img>
       </div>
       {/*    */}
       {/* hero section */}
-      <div className="flex flex-col absolute w-full top-36 left-0 pl-32 z-5 space-y-8 sm:flex-row sm:space-x-40  items-center justify-between min-h-screen py-2  ">
+      <div className="flex flex-col sm:absolute w-full sm:top-36 sm:left-0 sm:pl-32 sm:z-5 space-y-8 sm:flex-row sm:space-x-40  items-center justify-between min-h-screen py-2  ">
         {/* Text component */}
         <div className="w-full sm:w-1/2 flex flex-col sm:text-left space-y-8">
           <Button className="bg-white text-left">
@@ -145,8 +145,6 @@ export default function Homepage() {
           ))}
         </div>
       </div>
-
-      
     </div>
   );
 }
