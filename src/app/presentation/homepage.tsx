@@ -67,7 +67,7 @@ export default function Homepage() {
       </div>
 
       {/* categories section */}
-      <div className="w-full bg-white flex flex-col space-y-4">
+      <div className="w-full bg-white  flex flex-col space-y-4">
         <div className="w-full flex justify-center items-center">
           <h1 className="text-gray-500 text-lg">Categories</h1>
         </div>
@@ -78,7 +78,7 @@ export default function Homepage() {
           </p>
         </div>
         <div>
-          <div className="flex flex-row space-x-8 mt-4 justify-center items-center ">
+          <div className="sm:flex sm:flex-row grid grid-cols-2 gap-4 space-x-8 mt-4 justify-center items-center ">
             {categories.map((category) => (
               <div
                 key={category.id}
