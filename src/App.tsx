@@ -20,7 +20,7 @@ function App() {
                 <Homepage />
               </Container>
               {/* Footer */}
-              <div className="w-full  bg-green-700  h-72 px-24 py-16 flex flex-row space-x-16 justify-between">
+              <div className="w-full  bg-green-700 h-96 sm:h-72 px-10 sm:px-24 py-16 flex flex-col sm:flex-row space-x-8 sm:space-x-16 justify-between">
                 <div className="flex flex-col space-y-4 text-white w-64">
                   <div>logo</div>
                   <div>

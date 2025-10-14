@@ -42,12 +42,12 @@ export default function Navbar() {
       </div>
 
       {/* navbar menu */}
-      <div className="flex flex-row space-x-8 bg-green-700 pb-8 sm:px-24 sm:h-8 items-center justify-between px-4 py-2">
+      <div className=" w-full flex flex-row space-x-8 bg-green-700 pb-8 sm:px-24 sm:h-8 items-center justify-between px-4 py-2">
         <Button className="rounded-md bg-yellow-400 text-black">
           Browse All Categories
         </Button>
 
-        <div className="flex flex-row space-x-8 text-sm text-white">
+        <div className="hidden sm:flex flex-row space-x-8 text-sm text-white">
           <div>Home</div>
           <div>Shop</div>
           <div>Fruits</div>
