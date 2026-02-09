@@ -34,8 +34,8 @@ export default function Homepage() {
           </p>
 
           <div className="flex space-x-4">
-            <Button className="bg-green-700 text-white  ">Shop Now</Button>
-            <Button className="text-gray-800 bg-white">
+            <Button className="bg-green-700 text-white px-4 ">Shop Now</Button>
+            <Button className="text-black bg-white border px-4">
               View All Products
             </Button>
           </div>
@@ -56,7 +56,7 @@ export default function Homepage() {
 
               <div>Fast delivery</div>
             </Button>
-            <Button className="relative bottom-40 left-40 sm:left-60 bg-white flex space-x-2 text-center items-center">
+            <Button className="relative -bottom-60 -left-[300px] sm:left-60 bg-white flex space-x-2 text-center items-center">
               <div className="bg-green-700 p-1 rounded-full">
                 <AnchorIcon className="w-4 h-4 text-white" />
               </div>

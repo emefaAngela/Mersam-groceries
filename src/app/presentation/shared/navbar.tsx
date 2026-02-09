@@ -1,6 +1,4 @@
 import {
-  FacebookIcon,
-  InstagramIcon,
   ShoppingBagIcon,
   //SearchIcon,
   ArrowDown,
@@ -10,7 +8,7 @@ export default function Navbar() {
   return (
     <div className="w-full   flex flex-col space-y-0">
       {/* header */}
-      <div className="flex flex-row space-x-16 sm:px-24 sm:h-8 bg-yellow-400 text-black items-center justify-between px-4 py-2">
+      {/* <div className="flex flex-row space-x-16 sm:px-24 sm:h-8 bg-yellow-400 text-black items-center justify-between px-4 py-2">
         <div>Call Us: 0206629672</div>
         <div>
           Place your first and get free delivery.
@@ -26,13 +24,13 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
 
       {/* navbar */}
       <div className="bg-green-700 sm:px-24 h-32 text-white flex flex-col items-center justify-center px-4 py-2">
-        <div className="flex flex-row space-x-32 w-full items-center justify-between">
+        <div className="flex flex-row sm:space-x-32 w-full items-center justify-between">
           <div>logo</div>
-          <div className="bg-[#388F6B] rounded-md w-96 text-sm px-4 py-1">
+          <div className="bg-[#388F6B] rounded-md sm:w-96 w-64 text-sm px-4 py-1">
             Search bar
           </div>
           <div className="flex flex-row space-x-2">
