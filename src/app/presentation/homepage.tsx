@@ -16,7 +16,7 @@ export default function Homepage() {
       </div>
       {/*    */}
       {/* hero section */}
-      <div className="flex flex-col sm:absolute w-full sm:top-36 sm:left-0 sm:pl-32 sm:z-5 space-y-8 sm:flex-row sm:space-x-40  items-center justify-between min-h-screen py-2  ">
+      <div className="flex flex-col sm:absolute w-full sm:top-36 sm:left-0 sm:pl-32 sm:z-5 space-y-8 sm:flex-row sm:space-x-40  items-center justify-between sm:min-h-screen py-2 sm:pb-96 ">
         {/* Text component */}
         <div className="w-full sm:w-1/2 flex flex-col sm:text-left space-y-8">
           <Button className="bg-white text-left">
@@ -42,7 +42,7 @@ export default function Homepage() {
         </div>
 
         {/* Image component */}
-        <div className="w-full sm:w-1/2 -mt-96 sm:-mt-0">
+        <div className="w-full hidden sm:flex sm:w-1/2 -mt-96 sm:-mt-0">
           <img
             src={image}
             alt="Homepage Image"
@@ -67,7 +67,7 @@ export default function Homepage() {
       </div>
 
       {/* categories section */}
-      <div className="w-full bg-white  flex flex-col space-y-4">
+      <div className="w-full bg-white sm:relative sm:z-10 sm:mt-[400px] flex flex-col space-y-4">
         <div className="w-full flex justify-center items-center">
           <h1 className="text-gray-500 text-lg">Categories</h1>
         </div>
@@ -78,7 +78,7 @@ export default function Homepage() {
           </p>
         </div>
         <div>
-          <div className="sm:flex sm:flex-row grid grid-cols-2 gap-4 space-x-8 mt-4 justify-center items-center ">
+          <div className="sm:flex sm:flex-row grid grid-cols-2 gap-2 sm:gap-4 sm:space-x-8 mt-4 justify-center items-center ">
             {categories.map((category) => (
               <div
                 key={category.id}
@@ -118,7 +118,7 @@ export default function Homepage() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex flex-col space-y-4 w-52 h-68 border border-gray-200 rounded-sm p-4"
+              className="flex-none flex flex-col space-y-4 sm:w-52 w-52 h-68 border border-gray-200 rounded-sm p-4"
             >
               <div className="flex justify-end">
                 <img className="w-6 h-6" src={product.image} alt="wishlist" />

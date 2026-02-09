@@ -8,7 +8,7 @@ function Container({
   ...props
 }: React.ComponentProps<"div">) {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Navbar />
       <div
         className={cn("w-full h-full px-10 sm:px-24 m-0 bg-white", className)}
