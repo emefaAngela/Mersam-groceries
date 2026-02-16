@@ -4,7 +4,8 @@ import { Container } from "./components/container";
 import Homepage from "./app/presentation/homepage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./app/presentation/dashboard/dashboard";
-import { FacebookIcon, InstagramIcon } from "lucide-react";
+// import { FacebookIcon, InstagramIcon } from "lucide-react";
+import Shoppage from "./app/presentation/shoppage";
 //import Products from "./app/presentation/dashboard/products";
 function App() {
   //const [count, setCount] = useState(0);
@@ -20,7 +21,7 @@ function App() {
                 <Homepage />
               </Container>
               {/* Footer */}
-              <div className="w-full  bg-green-700 h-96 sm:h-72 px-10 sm:px-24 py-16 flex flex-col sm:flex-row space-x-8 sm:space-x-16 justify-between">
+              {/* <div className="w-full  bg-green-700 h-96 sm:h-72 px-10 sm:px-24 py-16 flex flex-col sm:flex-row space-x-8 sm:space-x-16 justify-between">
                 <div className="flex flex-col space-y-4 text-white w-64">
                   <div>logo</div>
                   <div>
@@ -64,11 +65,16 @@ function App() {
                     <div className="text-gray-300">Contact Us</div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           }
         />
         <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/shop" element={<div w-full h-full>
+          <Container>
+            <Shoppage />
+          </Container>
+        </div>} />
       </Routes>
     </BrowserRouter>
   );

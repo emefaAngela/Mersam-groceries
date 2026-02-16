@@ -4,8 +4,10 @@ import { BikeIcon, AnchorIcon, ShoppingBasket } from "lucide-react";
 import { categories } from "../data/categories";
 import { products } from "../data/products";
 import cover from "../../assets/cover.jpeg";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
+  const navigate = useNavigate();
   return (
     <div className="w-full h-full flex flex-col space-y-16 ">
       <div className="hdden sm:w-full">
@@ -48,8 +50,8 @@ export default function Homepage() {
             alt="Homepage Image"
             className="w-full -ml-8 sm:-ml-0 sm:w-3/4 sm:h-auto"
           />
-          <div>
-            <Button className="relative bottom-10 sm:bottom-20 left-20 bg-white flex space-x-2 text-center items-center">
+          <div className="absolute">
+            <Button className="relative -bottom-60  sm:-bottom-100 left-20 bg-white flex space-x-2 text-center items-center">
               <div className="bg-green-700 p-1 rounded-full">
                 <BikeIcon className="w-5 h-5 text-white" />
               </div>
@@ -109,7 +111,12 @@ export default function Homepage() {
             </p>
           </div>
           <div>
-            <Button className="bg-green-700 text-white px-3">
+            <Button
+              className="bg-green-700 text-white px-3"
+              onClick={() => {
+                navigate("/shop");
+              }}
+            >
               View All Products
             </Button>
           </div>

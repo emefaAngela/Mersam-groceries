@@ -1,6 +1,6 @@
 import {
   ShoppingBagIcon,
-  //SearchIcon,
+  UserRound,
   ArrowDown,
 } from "lucide-react";
 import { Button } from "../../../components/button";
@@ -35,6 +35,7 @@ export default function Navbar() {
           </div>
           <div className="flex flex-row space-x-2">
             <ShoppingBagIcon className="w-4 h-4" />
+            <UserRound className="w-4 h-4" />
           </div>
         </div>
       </div>
