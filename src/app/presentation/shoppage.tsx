@@ -1,5 +1,29 @@
-import { products } from "../data/products";
+import supabase from "../../../utils/supabase";
+import { useEffect, useState } from "react";
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+  // add other fields as needed
+};
+
 export default function Shoppage() {
+  const [productList, setProductList] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data: products } = await supabase.from("Products").select();
+        setProductList(products ?? []);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <div className="w-full h-full m-0">
       <div className="w-full m-0 h-48  text-black  flex flex-col items-center justify-center space-y-2">
@@ -30,7 +54,7 @@ export default function Shoppage() {
           </div>
           <div>
             <div className="w-full grid grid-cols-3 gap-4">
-              {products.map((product) => (
+              {productList.map((product) => (
                 <div
                   key={product.id}
                   className="flex-none flex flex-col space-y-4 sm:w-52 w-52 h-68 border border-gray-200 rounded-sm p-4"
@@ -54,7 +78,7 @@ export default function Shoppage() {
                       {product.category}
                     </div>
                     <div className="font medium text-lg text-gray-800">
-                      {product.title}
+                      {product.name}
                     </div>
                     <div className="flex flex-row justify-between">
                       <div className="text-lg text-gray-800 font-medium">
