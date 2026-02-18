@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./app/presentation/dashboard/dashboard";
 // import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Shoppage from "./app/presentation/shoppage";
+import ProductDetails from "./app/presentation/productdetails";
 //import Products from "./app/presentation/dashboard/products";
 function App() {
   //const [count, setCount] = useState(0);
@@ -73,6 +74,11 @@ function App() {
         <Route path="/shop" element={<div w-full h-full>
           <Container>
             <Shoppage />
+          </Container>
+        </div>} />
+        <Route path="/product-details" element={<div w-full h-full>
+          <Container>
+            <ProductDetails />
           </Container>
         </div>} />
       </Routes>
