@@ -71,16 +71,26 @@ function App() {
           }
         />
         <Route path="/dashboard/*" element={<Dashboard />} />
-        <Route path="/shop" element={<div w-full h-full>
-          <Container>
-            <Shoppage />
-          </Container>
-        </div>} />
-        <Route path="/product-details" element={<div w-full h-full>
-          <Container>
-            <ProductDetails />
-          </Container>
-        </div>} />
+        <Route
+          path="/shop"
+          element={
+            <div w-full h-full>
+              <Container>
+                <Shoppage />
+              </Container>
+            </div>
+          }
+        />
+        <Route
+          path="/product-details/:productId"
+          element={
+            <div w-full h-full>
+              <Container>
+                <ProductDetails />
+              </Container>
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

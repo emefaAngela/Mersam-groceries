@@ -1,5 +1,6 @@
 import supabase from "../../../utils/supabase";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 type Product = {
   id: number;
   name: string;
@@ -10,6 +11,7 @@ type Product = {
 };
 
 export default function Shoppage() {
+   const navigate = useNavigate();
   const [productList, setProductList] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -57,6 +59,7 @@ export default function Shoppage() {
               {productList.map((product) => (
                 <div
                   key={product.id}
+                  onClick={()=>{navigate(`/product-details/${product.id}`)}}
                   className="flex-none flex flex-col space-y-4 sm:w-52 w-52 h-68 border border-gray-200 rounded-sm p-4"
                 >
                   <div className="flex justify-end">
@@ -86,7 +89,7 @@ export default function Shoppage() {
                       </div>
                       <div className="flex space-x-1 w-fit bg-green-200 rounded-full px-2 text-center items-center">
                         <div></div>
-                        <div className="text-green-500">Add</div>
+                        <div  onClick={()=>{navigate(`/product-details/${product.id}`)}} className="text-green-500">Add</div>
                       </div>
                     </div>
                   </div>
