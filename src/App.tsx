@@ -7,6 +7,7 @@ import Dashboard from "./app/presentation/dashboard/dashboard";
 // import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Shoppage from "./app/presentation/shoppage";
 import ProductDetails from "./app/presentation/productdetails";
+import ShoppingCart from "./app/presentation/shoppingcart";
 //import Products from "./app/presentation/dashboard/products";
 function App() {
   //const [count, setCount] = useState(0);
@@ -87,6 +88,16 @@ function App() {
             <div w-full h-full>
               <Container>
                 <ProductDetails />
+              </Container>
+            </div>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <div w-full h-full>
+              <Container>
+                <ShoppingCart />
               </Container>
             </div>
           }

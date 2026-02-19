@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import supabase from "../../../utils/supabase";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 type Product = {
   id: number;
   name: string;
@@ -10,6 +10,7 @@ type Product = {
   // add other fields as needed
 };
 export default function ProductDetails() {
+  const navigate = useNavigate();
   const [product, setProduct] = useState<Product[]>([]);
 
   const { productId } = useParams();
@@ -65,7 +66,12 @@ export default function ProductDetails() {
                   <div>0</div>
                   <div>+</div>
                 </div>
-                <div className="bg-green-700 text-white rounded-full pt-1.5 text-xs px-2 py-0.5 text-center">
+                <div
+                  onClick={() => {
+                    navigate("/cart");
+                  }}
+                  className="bg-green-700 text-white rounded-full pt-1.5 text-xs px-2 py-0.5 text-center"
+                >
                   Add to cart
                 </div>
                 <div className="bg-yellow-500 text-black rounded-full pt-1.5 text-xs px-2 py-0.5 text-center">
