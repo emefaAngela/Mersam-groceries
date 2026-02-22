@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import supabase from "../../../utils/supabase";
+import BillingInfoCard from "../../components/billinginfocard";
+import { useNavigate } from "react-router-dom";
 
 type Product = {
   id: number;
@@ -11,6 +13,7 @@ type Product = {
 };
 
 export default function ShoppingCart() {
+  const navigate = useNavigate();
   const [productList, setProductList] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -31,7 +34,7 @@ export default function ShoppingCart() {
         <h1 className="text-3xl">Shop</h1>
         <span>Home / Shopping Cart</span>
       </div>
-      <div className="flex flex-row space-x-8">
+      <div className="flex flex-row justify-between mx-24">
         <div className="flex">
           <table>
             <thead className="bg-yellow-300 h-12 rounded-lg flex flex-row px-4 py-1 space-x-42 justify-center items-center font-semibold">
@@ -65,7 +68,8 @@ export default function ShoppingCart() {
             </tbody>
           </table>
         </div>
-        <div className="flex flex-col w-72 space-y-4 border border-1 border-gray-200 rounded-lg items-center justify-center py-4">
+
+        <div className="flex flex-col w-72 h-96 space-y-4 border border-1 border-gray-200 rounded-lg items-center justify-center py-4">
           <div className="text-2xl font-semibold">Order Summary</div>
           <div className="grid grid-cols-2 px-10 gap-32">
             <div className="flex flex-col space-y-2">
@@ -83,7 +87,14 @@ export default function ShoppingCart() {
               <div>$200</div>
             </div>
           </div>
-          <div className="bg-green-600 text-white text-center rounded-4xl px-6 py-2">Proceed to Checkout</div>
+          <div
+            onClick={() => {
+              navigate("/billing-info");
+            }}
+            className="bg-green-600 text-white text-center rounded-4xl px-6 py-2"
+          >
+            Proceed to Checkout
+          </div>
         </div>
       </div>
     </div>

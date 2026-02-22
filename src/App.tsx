@@ -8,6 +8,7 @@ import Dashboard from "./app/presentation/dashboard/dashboard";
 import Shoppage from "./app/presentation/shoppage";
 import ProductDetails from "./app/presentation/productdetails";
 import ShoppingCart from "./app/presentation/shoppingcart";
+import BillingInfoCard from "./components/billinginfocard";
 //import Products from "./app/presentation/dashboard/products";
 function App() {
   //const [count, setCount] = useState(0);
@@ -98,6 +99,16 @@ function App() {
             <div w-full h-full>
               <Container>
                 <ShoppingCart />
+              </Container>
+            </div>
+          }
+        />
+        <Route
+          path="/billing-info"
+          element={
+            <div w-full h-full>
+              <Container>
+                <BillingInfoCard />
               </Container>
             </div>
           }
