@@ -7,17 +7,18 @@ export default function BillingInfoCard() {
         <h1 className="text-3xl">Shop</h1>
         <span>Home / Shopping Cart</span>
       </div>
-      <div className="flex flex-row justify-between mx-24">
-        <div className="flex flex-col">
-          <div className="text-2xl font-semibold">Billing Details</div>
+      <div className="flex sm:flex-row flex-col  space-y-8  sm:justify-between w-full items-center mx-auto justify-center sm:mx-24 mb-16">
+        <div className="flex w-full flex-col">
+          <div className="text-2xl font-semibold mb-8">Billing Details</div>
           <div>
             <form className="flex flex-col space-y-4">
-              <div className="flex flex-row space-x-4">
+              <div className="flex flex-col  sm:flex-row sm:space-x-4">
                 <div className="flex flex-col space-y-2">
                   <div className="text-sm font-medium">First Name</div>
                   <input
                     type="text"
                     className="border border-gray-300 rounded-md px-4 py-2"
+                    placeholder="John"
                   />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -25,6 +26,7 @@ export default function BillingInfoCard() {
                   <input
                     type="text"
                     className="border border-gray-300 rounded-md px-4 py-2"
+                    placeholder="Doe"
                   />
                 </div>
               </div>
@@ -32,28 +34,29 @@ export default function BillingInfoCard() {
                 <div className="text-sm font-medium">City</div>
                 <input
                   type="text"
-                  className="border border-gray-300 rounded-md px-4 py-2"
+                  className="border border-gray-300 w-full rounded-md px-4 py-2"
                 />
               </div>
               <div>
                 <div className="text-sm font-medium">Address</div>
                 <input
                   type="text"
-                  className="border border-gray-300 rounded-md px-4 py-2"
+                  className="border border-gray-300 w-full rounded-md px-4 py-2"
                 />
               </div>
               <div>
                 <div className="text-sm font-medium">Email</div>
                 <input
                   type="text"
-                  className="border border-gray-300 rounded-md px-4 py-2"
+                  className="border border-gray-300 w-full rounded-md px-4 py-2"
+                  placeholder="johndoe@gmail.com"
                 />
               </div>
               <div>
                 <div className="text-sm font-medium">Phone</div>
                 <input
                   type="text"
-                  className="border border-gray-300 rounded-md px-4 py-2"
+                  className="border border-gray-300 w-full rounded-md px-4 py-2"
                 />
               </div>
             </form>
