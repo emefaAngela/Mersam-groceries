@@ -7,8 +7,8 @@ export default function BillingInfoCard() {
         <h1 className="text-3xl">Shop</h1>
         <span>Home / Shopping Cart</span>
       </div>
-      <div className="flex sm:flex-row flex-col  space-y-8  sm:justify-between w-full items-center mx-auto justify-center sm:mx-24 mb-16">
-        <div className="flex w-full flex-col">
+      <div className="flex sm:flex-row flex-col  sm:space-x-36  space-y-8   w-full sm:items-center sm:mx-auto mx-auto justify-center  mb-16">
+        <div className="flex sm:w-1/3 w-full flex-col">
           <div className="text-2xl font-semibold mb-8">Billing Details</div>
           <div>
             <form className="flex flex-col space-y-4">

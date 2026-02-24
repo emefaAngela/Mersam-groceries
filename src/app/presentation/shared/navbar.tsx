@@ -1,10 +1,9 @@
-import {
-  ShoppingBagIcon,
-  UserRound,
-  ArrowDown,
-} from "lucide-react";
+import { ShoppingBagIcon, UserRound, ArrowDown } from "lucide-react";
 import { Button } from "../../../components/button";
+import SignInModal from "./signin";
+import { useState } from "react";
 export default function Navbar() {
+  const [signInOpen, setSignInOpen] = useState(false);
   return (
     <div className="w-full   flex flex-col space-y-0">
       {/* header */}
@@ -35,7 +34,12 @@ export default function Navbar() {
           </div>
           <div className="flex flex-row space-x-2">
             <ShoppingBagIcon className="w-4 h-4" />
-            <UserRound className="w-4 h-4" />
+            <UserRound
+              className="w-4 h-4"
+              onClick={() => {
+                setSignInOpen(true);
+              }}
+            />
           </div>
         </div>
       </div>
@@ -60,6 +64,12 @@ export default function Navbar() {
           <ArrowDown className="w-4 h-4 inline-block" />
         </div>
       </div>
+      <SignInModal
+        isOpen={signInOpen}
+        onClose={() => {
+          setSignInOpen(false);
+        }}
+      />
     </div>
   );
 }

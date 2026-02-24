@@ -5,8 +5,11 @@ import { categories } from "../data/categories";
 import { products } from "../data/products";
 import cover from "../../assets/cover.jpeg";
 import { useNavigate } from "react-router-dom";
+import SignInModal from "./shared/signin";
+import {  useState } from "react";
 
 export default function Homepage() {
+  const[signInOpen,setSignInOpen]=useState(false)
   const navigate = useNavigate();
   return (
     <div className="w-full h-full flex flex-col space-y-16 ">
@@ -152,6 +155,7 @@ export default function Homepage() {
           ))}
         </div>
       </div>
+      <SignInModal isOpen={signInOpen} onClose={()=>{setSignInOpen(false)}}/>
     </div>
   );
 }
