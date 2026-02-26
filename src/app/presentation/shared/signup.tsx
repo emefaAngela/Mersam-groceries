@@ -1,4 +1,5 @@
 import { createUser } from "../../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 
@@ -9,6 +10,8 @@ export default function SignUpModal({ isOpen, onClose }) {
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSignUp = () => {
     // Call the createUser function from useUser.ts to create a new user
@@ -91,6 +94,10 @@ export default function SignUpModal({ isOpen, onClose }) {
           className="bg-green-800 text-white px-8 py-2 rounded-full cursor-pointer"
         >
           Sign Up
+        </div>
+        <div
+        onClick={() => navigate("/signin")}
+         className="text-xs text-gray-400"> Already registered? Sign In
         </div>
       </div>
     </div>
