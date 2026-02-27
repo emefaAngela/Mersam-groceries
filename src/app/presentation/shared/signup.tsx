@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 
-export default function SignUpModal({ isOpen, onClose }) {
+export default function SignUpModal({ isOpen, onClose, onSignInClick }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -12,6 +12,11 @@ export default function SignUpModal({ isOpen, onClose }) {
   const [address, setAddress] = useState("");
 
   const navigate = useNavigate();
+
+  const handleSignin = () => {
+    onClose();
+     if (typeof onOpenSignIn === "function") onOpenSignIn();
+  };
 
   const handleSignUp = () => {
     // Call the createUser function from useUser.ts to create a new user
@@ -96,7 +101,7 @@ export default function SignUpModal({ isOpen, onClose }) {
           Sign Up
         </div>
         <div
-        onClick={() => navigate("/signin")}
+        onClick={handleSignin}
          className="text-xs text-gray-400"> Already registered? Sign In
         </div>
       </div>
