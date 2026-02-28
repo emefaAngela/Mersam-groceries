@@ -1,21 +1,24 @@
 import { createUser } from "../../../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import SignInModal from "./signin";
 
 import React, { useState } from "react";
 
-export default function SignUpModal({ isOpen, onClose, onSignInClick }) {
+export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [signInOpen, setSignInOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSignin = () => {
     onClose();
-     if (typeof onOpenSignIn === "function") onOpenSignIn();
+    // if (typeof onOpenSignIn === "function") setSignInOpen(true);
++   if (typeof onOpenSignIn === "function") onOpenSignIn();
   };
 
   const handleSignUp = () => {
@@ -25,8 +28,8 @@ export default function SignUpModal({ isOpen, onClose, onSignInClick }) {
   if (!isOpen) return null;
 
   return (
-    <div className="w-full h-full flex justify-center items-center  bg-black opacity-50 fixed  z-40">
-      <div className=" flex flex-col space-y-4 items-center z-50 bg-gray-300 p-6  justify-center rounded-lg">
+    <div className="w-full h-full flex justify-center items-center   bg-opacity-50 fixed  z-40">
+      <div className=" flex flex-col space-y-4 items-center z-50 bg-gray-100 my-24 w-1/2  p-6  justify-center rounded-lg">
         <div
           className="w-8 h-8 rounded-full absolute top-52 left-[890px] flex items-center justify-center bg-amber-300 text-black"
           onClick={onClose}
@@ -100,11 +103,17 @@ export default function SignUpModal({ isOpen, onClose, onSignInClick }) {
         >
           Sign Up
         </div>
-        <div
-        onClick={handleSignin}
-         className="text-xs text-gray-400"> Already registered? Sign In
+        <div onClick={handleSignin} className="text-xs text-gray-400">
+          {" "}
+          Already registered? Sign In
         </div>
       </div>
+      <SignInModal
+        isOpen={signInOpen}
+        onClose={() => {
+          handleSignin;
+        }}
+      />
     </div>
   );
 }
