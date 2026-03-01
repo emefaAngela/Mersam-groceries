@@ -18,7 +18,7 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
   const handleSignin = () => {
     onClose();
     // if (typeof onOpenSignIn === "function") setSignInOpen(true);
-+   if (typeof onOpenSignIn === "function") onOpenSignIn();
++  if (typeof onOpenSignIn === "function") onOpenSignIn();
   };
 
   const handleSignUp = () => {
@@ -58,7 +58,7 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
           />
         </div>
         <div className="w-full flex flex-col space-y-4 ">
-          <div className="text-left">Password</div>
+          <div className="text-left">First Name</div>
           <input
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -68,7 +68,7 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
           />
         </div>
         <div className="w-full flex flex-col space-y-4 ">
-          <div className="text-left">Password</div>
+          <div className="text-left">Last name</div>
           <input
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -78,7 +78,7 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
           />
         </div>
         <div className="w-full flex flex-col space-y-4 ">
-          <div className="text-left">Password</div>
+          <div className="text-left">Address</div>
           <input
             value={address}
             onChange={(e) => setAddress(e.target.value)}
@@ -88,7 +88,7 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
           />
         </div>
         <div className="w-full flex flex-col space-y-4 ">
-          <div className="text-left">Password</div>
+          <div className="text-left">Phone number</div>
           <input
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
