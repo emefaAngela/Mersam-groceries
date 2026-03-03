@@ -1,6 +1,7 @@
 import { ShoppingBagIcon, UserRound, ArrowDown } from "lucide-react";
 import { Button } from "../../../components/button";
 import SignUpModal from "./signup";
+import SignInModal from "./signin";
 import { useState } from "react";
 export default function Navbar() {
   const [signUpOpen, setSignUpOpen] = useState(false);
@@ -71,6 +72,12 @@ export default function Navbar() {
           setSignUpOpen(false);
         }}
         onOpenSignIn={() => {setSignInOpen(true)}}
+      />
+      <SignInModal
+        isOpen={signInOpen}
+        onClose={() => {
+          setSignInOpen(false);
+        }}
       />
     </div>
   );

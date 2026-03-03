@@ -167,6 +167,7 @@ export default function Homepage() {
         onClose={() => {
           setSignInOpen(false);
         }}
+        onOpenSignIn={() => {setSignInOpen(true)}}
       />
     </div>
   );

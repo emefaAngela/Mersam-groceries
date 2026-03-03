@@ -1,5 +1,5 @@
 import { createUser } from "../../../hooks/useUser";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import SignInModal from "./signin";
 
 import React, { useState } from "react";
@@ -11,18 +11,16 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [signInOpen, setSignInOpen] = useState(false);
 
-  const navigate = useNavigate();
+
+  //const navigate = useNavigate();
 
   const handleSignin = () => {
     onClose();
-    // if (typeof onOpenSignIn === "function") setSignInOpen(true);
-+  if (typeof onOpenSignIn === "function") onOpenSignIn();
   };
 
+
   const handleSignUp = () => {
-    // Call the createUser function from useUser.ts to create a new user
     createUser({ email, password, firstName, lastName, phoneNumber, address });
   };
   if (!isOpen) return null;
