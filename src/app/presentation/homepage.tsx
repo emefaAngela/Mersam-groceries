@@ -1,17 +1,28 @@
 import { Button } from "../../components/button";
 import image from "../../assets/hompageimage.png";
 import { BikeIcon, AnchorIcon, ShoppingBasket } from "lucide-react";
-import { categories } from "../data/categories";
+//import { categories } from "../data/categories";
 import { products } from "../data/products";
 import cover from "../../assets/cover.jpeg";
 import { useNavigate } from "react-router-dom";
-import SignInModal from "./shared/signin";
+//import SignInModal from "./shared/signin";
 import SignUpModal from "./shared/signup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getCategories } from "../../hooks/useCategories";
 
 export default function Homepage() {
   const [signInOpen, setSignInOpen] = useState(false);
   const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      let categories = await getCategories();
+      setCategories(categories);
+    };
+    fetchCategories();
+  }, []);
+
   return (
     <div className="w-full h-full flex flex-col space-y-16 ">
       <div className="hdden sm:w-full">
@@ -94,7 +105,7 @@ export default function Homepage() {
                   <ShoppingBasket className="w-12 h-12 text-gray-300 text-center" />
                 </div>
                 <div className="">
-                  <p className="font-bold text-md"> {category.title}</p>
+                  <p className="font-bold text-md"> {category.name}</p>
                   <p className="text-sm text-gray-500">
                     {category.length}Products
                   </p>
@@ -167,7 +178,9 @@ export default function Homepage() {
         onClose={() => {
           setSignInOpen(false);
         }}
-        onOpenSignIn={() => {setSignInOpen(true)}}
+        onOpenSignIn={() => {
+          setSignInOpen(true);
+        }}
       />
     </div>
   );
