@@ -3,9 +3,14 @@ import { Button } from "../../../components/button";
 import SignUpModal from "./signup";
 import SignInModal from "./signin";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 export default function Navbar() {
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
+  const cartLength = useSelector(
+    (state: any) => state.checkout.productQuantity,
+  );
+  console.log(cartLength);
   return (
     <div className="w-full   flex flex-col space-y-0">
       {/* header */}
@@ -36,6 +41,9 @@ export default function Navbar() {
           </div>
           <div className="flex flex-row space-x-2">
             <ShoppingBagIcon className="w-4 h-4" />
+            <div className="text-xs relative bottom-2 right-4 w-4 text-center text-black h-4 bg-white rounded-full">
+              {cartLength}
+            </div>
             <UserRound
               className="w-4 h-4"
               onClick={() => {
@@ -71,7 +79,9 @@ export default function Navbar() {
         onClose={() => {
           setSignUpOpen(false);
         }}
-        onOpenSignIn={() => {setSignInOpen(true)}}
+        onOpenSignIn={() => {
+          setSignInOpen(true);
+        }}
       />
       <SignInModal
         isOpen={signInOpen}

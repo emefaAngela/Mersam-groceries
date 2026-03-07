@@ -9,6 +9,11 @@ import { useNavigate } from "react-router-dom";
 import SignUpModal from "./shared/signup";
 import { useEffect, useState } from "react";
 import { getCategories } from "../../hooks/useCategories";
+import {
+  initialState,
+  addtoCart,
+  removefromCart,
+} from "../../../utils/checkoutSlice";
 
 export default function Homepage() {
   const [signInOpen, setSignInOpen] = useState(false);
@@ -159,7 +164,14 @@ export default function Homepage() {
                   </div>
                   <div className="flex space-x-1 w-fit bg-green-200 rounded-full px-2 text-center items-center">
                     <div></div>
-                    <div className="text-green-500">Add</div>
+                    <div
+                      className="text-green-500 mouse-pointer"
+                      onClick={() => {
+                        addtoCart(product);
+                      }}
+                    >
+                      Add
+                    </div>
                   </div>
                 </div>
               </div>

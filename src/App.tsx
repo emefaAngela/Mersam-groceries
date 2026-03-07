@@ -10,8 +10,6 @@ import ProductDetails from "./app/presentation/productdetails";
 import ShoppingCart from "./app/presentation/shoppingcart";
 import BillingInfoCard from "./components/billinginfocard";
 import OrderSuccess from "./app/presentation/shared/ordersucess";
-import { Provider } from "react-redux";
-import { store } from "./utils/store";
 //import Products from "./app/presentation/dashboard/products";
 function App() {
   //const [count, setCount] = useState(0);

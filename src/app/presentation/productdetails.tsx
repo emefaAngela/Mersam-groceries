@@ -1,17 +1,30 @@
 import { useEffect, useState } from "react";
 import supabase from "../../../utils/supabase";
 import { useParams, useNavigate } from "react-router-dom";
+import {
+  addtoCart,
+  initialState,
+  removefromCart,
+} from "../../../utils/checkoutSlice";
+import { useDispatch, useSelector } from "react-redux";
 type Product = {
   id: number;
   name: string;
   price: number;
   image: string;
   category: string;
+  availability: string;
   // add other fields as needed
 };
 export default function ProductDetails() {
-  const navigate = useNavigate();
-  const [product, setProduct] = useState<Product[]>([]);
+  //const navigate = useNavigate();
+  const [product, setProduct] = useState<Product | null>(null);
+  const dispatch = useDispatch();
+  // const cartLength = useSelector(
+  //   (state: any) => state.checkout.productQuantity,
+  // );
+  // const cartProducts = useSelector((state: any) => state.checkout.cartProducts);
+  // console.log(cartProducts);
 
   const { productId } = useParams();
   console.log(productId);
@@ -23,7 +36,7 @@ export default function ProductDetails() {
           .select("*")
           .eq("id", productId) // productId = the id you want
           .single();
-        setProduct(product ?? []);
+        setProduct(product ?? null);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -62,13 +75,28 @@ export default function ProductDetails() {
               </div>
               <div className="flex flex-row space-x-3">
                 <div className="flex flex-row space-x-2 px-2 py-0.5 border rounded-full">
-                  <div>-</div>
+                  <div
+                    onClick={() => {
+                      dispatch(removefromCart(product));
+                      console.log("removed from cart");
+                    }}
+                  >
+                    -
+                  </div>
                   <div>0</div>
-                  <div>+</div>
+                  <div
+                    onClick={() => {
+                      dispatch(addtoCart(product));
+                      console.log("added to cart");
+                    }}
+                  >
+                    +
+                  </div>
                 </div>
                 <div
                   onClick={() => {
-                    navigate("/cart");
+                    dispatch(addtoCart(product));
+                    console.log("added to cart");
                   }}
                   className="bg-green-700 text-white rounded-full pt-1.5 text-xs px-2 py-0.5 text-center"
                 >
