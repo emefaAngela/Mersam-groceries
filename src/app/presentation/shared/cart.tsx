@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 export default function Cart() {
+  const cartLength = useSelector((state: any) => state.checkout.productQuantity);
+  const cartItems = useSelector((state:any)=>state.checkout.cartProducts);
 const navigate = useNavigate();
   let cartPath="/billing-info";
   let buttonName="Proceed to Checkout";
@@ -29,7 +32,7 @@ const navigate = useNavigate();
           <div className="pt-4">Total</div>
         </div>
         <div className="flex flex-col space-y-2">
-          <div>3</div>
+          <div>{cartLength}</div>
           <div>$100</div>
           <div>$10</div>
           <div></div>

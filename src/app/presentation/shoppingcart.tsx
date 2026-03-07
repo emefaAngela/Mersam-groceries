@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import supabase from "../../../utils/supabase";
 import Cart from "./shared/cart";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 type Product = {
   id: number;
@@ -15,6 +16,7 @@ type Product = {
 export default function ShoppingCart() {
   const navigate = useNavigate();
   const [productList, setProductList] = useState<Product[]>([]);
+  const cartItems = useSelector((state: any) => state.checkout.cartProducts);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -44,7 +46,7 @@ export default function ShoppingCart() {
               <tr>Subtotal</tr>
             </thead>
             <tbody className="flex flex-col space-y-2">
-              {productList.map((product) => (
+              {cartItems.map((product) => (
                 <tr
                   key={product.id}
                   className="flex flex-row justify-between sm:px-4 py-2 border-b"

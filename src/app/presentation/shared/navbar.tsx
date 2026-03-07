@@ -4,9 +4,11 @@ import SignUpModal from "./signup";
 import SignInModal from "./signin";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
+  const navigate = useNavigate();
   const cartLength = useSelector(
     (state: any) => state.checkout.productQuantity,
   );
@@ -40,7 +42,12 @@ export default function Navbar() {
             Search bar
           </div>
           <div className="flex flex-row space-x-2">
-            <ShoppingBagIcon className="w-4 h-4" />
+            <ShoppingBagIcon
+              className="w-4 h-4"
+              onClick={() => {
+                navigate("/cart");
+              }}
+            />
             <div className="text-xs relative bottom-2 right-4 w-4 text-center text-black h-4 bg-white rounded-full">
               {cartLength}
             </div>
