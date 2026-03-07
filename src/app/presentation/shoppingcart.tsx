@@ -1,35 +1,12 @@
-import { useEffect, useState } from "react";
-import supabase from "../../../utils/supabase";
 import Cart from "./shared/cart";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import type { ProductType } from "../../../utils/types";
 
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
-  // add other fields as needed
-};
 
 export default function ShoppingCart() {
-  const navigate = useNavigate();
-  const [productList, setProductList] = useState<Product[]>([]);
   const cartItems = useSelector((state: any) => state.checkout.cartProducts);
+  console.log(cartItems);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const { data: products } = await supabase.from("Products").select();
-        setProductList(products ?? []);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
   return (
     <div className="w-full h-full m-0">
       <div className="w-full flex flex-col justify-center items-center h-48 m-0">
@@ -46,7 +23,7 @@ export default function ShoppingCart() {
               <tr>Subtotal</tr>
             </thead>
             <tbody className="flex flex-col space-y-2">
-              {cartItems.map((product) => (
+              {cartItems.map((product: ProductType) => (
                 <tr
                   key={product.id}
                   className="flex flex-row justify-between sm:px-4 py-2 border-b"
@@ -63,7 +40,7 @@ export default function ShoppingCart() {
                     </div>
                   </td>
                   <td className="-ml-12 sm:-ml-0"> {product.price}</td>
-                  <td className="text-center">${product.price}</td>
+                  <td className="text-center">{product.price}</td>
                   <td className="  text-left">${product.price}</td>
                 </tr>
               ))}

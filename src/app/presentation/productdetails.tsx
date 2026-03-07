@@ -1,24 +1,15 @@
 import { useEffect, useState } from "react";
 import supabase from "../../../utils/supabase";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   addtoCart,
-  initialState,
   removefromCart,
 } from "../../../utils/checkoutSlice";
-import { useDispatch, useSelector } from "react-redux";
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
-  availability: string;
-  // add other fields as needed
-};
+import { useDispatch } from "react-redux";
+import type { ProductType } from "../../../utils/types";
 export default function ProductDetails() {
   //const navigate = useNavigate();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<ProductType | null>(null);
   const dispatch = useDispatch();
   // const cartLength = useSelector(
   //   (state: any) => state.checkout.productQuantity,

@@ -2,22 +2,14 @@ import supabase from "../../../utils/supabase";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  initialState,
   addtoCart,
-  removefromCart,
+  //removefromCart,
 } from "../../../utils/checkoutSlice";
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
-  // add other fields as needed
-};
+import type { ProductType } from "../../../utils/types";
 
 export default function Shoppage() {
   const navigate = useNavigate();
-  const [productList, setProductList] = useState<Product[]>([]);
+  const [productList, setProductList] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {

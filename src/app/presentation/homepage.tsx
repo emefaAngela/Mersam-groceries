@@ -2,7 +2,6 @@ import { Button } from "../../components/button";
 import image from "../../assets/hompageimage.png";
 import { BikeIcon, AnchorIcon, ShoppingBasket } from "lucide-react";
 //import { categories } from "../data/categories";
-import { products } from "../data/products";
 import cover from "../../assets/cover.jpeg";
 import { useNavigate } from "react-router-dom";
 //import SignInModal from "./shared/signin";
@@ -10,22 +9,36 @@ import SignUpModal from "./shared/signup";
 import { useEffect, useState } from "react";
 import { getCategories } from "../../hooks/useCategories";
 import {
-  initialState,
   addtoCart,
-  removefromCart,
+  //removefromCart,
 } from "../../../utils/checkoutSlice";
+import { type CategoryType, type ProductType } from "../../../utils/types";
+import supabase from "../../../utils/supabase";
 
 export default function Homepage() {
   const [signInOpen, setSignInOpen] = useState(false);
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [productList, setProductList] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
-      let categories = await getCategories();
+      const categories: CategoryType[] = await getCategories();
       setCategories(categories);
     };
     fetchCategories();
+  }, []);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data: products } = await supabase.from("Products").select();
+        setProductList(products ?? []);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   return (
@@ -101,7 +114,7 @@ export default function Homepage() {
         </div>
         <div>
           <div className="sm:flex sm:flex-row grid grid-cols-2 gap-2 sm:gap-4 sm:space-x-8 mt-4 justify-center items-center ">
-            {categories.map((category) => (
+            {categories.map((category: CategoryType) => (
               <div
                 key={category.id}
                 className="flex flex-col justify-between items-center text-center h-32 w-48"
@@ -112,7 +125,7 @@ export default function Homepage() {
                 <div className="">
                   <p className="font-bold text-md"> {category.name}</p>
                   <p className="text-sm text-gray-500">
-                    {category.length}Products
+                    {/* {category.length}Products */}
                   </p>
                 </div>
               </div>
@@ -142,7 +155,7 @@ export default function Homepage() {
           </div>
         </div>
         <div className="w-full flex flex-row space-x-4 overflow-auto">
-          {products.map((product) => (
+          {productList.map((product: ProductType) => (
             <div
               key={product.id}
               className="flex-none flex flex-col space-y-4 sm:w-52 w-52 h-68 border border-gray-200 rounded-sm p-4"
@@ -156,7 +169,7 @@ export default function Homepage() {
               <div className="flex flex-col space-y-2">
                 <div className="text-green-400 text-md">{product.category}</div>
                 <div className="font medium text-lg text-gray-800">
-                  {product.title}
+                  {product.name}
                 </div>
                 <div className="flex flex-row justify-between">
                   <div className="text-lg text-gray-800 font-medium">

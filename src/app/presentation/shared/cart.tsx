@@ -1,25 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import type { ProductType } from "../../../../utils/types";
 export default function Cart() {
-  const cartLength = useSelector((state: any) => state.checkout.productQuantity);
-  const cartItems = useSelector((state:any)=>state.checkout.cartProducts);
-const navigate = useNavigate();
-  let cartPath="/billing-info";
-  let buttonName="Proceed to Checkout";
+  const cartLength = useSelector(
+    (state: any) => state.checkout.productQuantity,
+  );
+  const cartItems = useSelector((state: any) => state.checkout.cartProducts);
+  const subTotal = cartItems.reduce(
+    (total: number, product: ProductType) => total + product.price,
+    0,
+  );
+  const navigate = useNavigate();
+  let cartPath = "/billing-info";
+  let buttonName = "Proceed to Checkout";
 
   switch (window.location.pathname) {
     case "/cart":
-      cartPath="/billing-info";
-      buttonName="Proceed to Checkout";
+      cartPath = "/billing-info";
+      buttonName = "Proceed to Checkout";
       break;
     case "/billing-info":
-      cartPath="/order-success";
-      buttonName="Place Order";
+      cartPath = "/order-success";
+      buttonName = "Place Order";
       break;
     default:
-      cartPath="/cart";
-      buttonName="View Cart";
-  } 
+      cartPath = "/cart";
+      buttonName = "View Cart";
+  }
   return (
     <div className="flex flex-col w-72 h-96 space-y-4  border-1 border-gray-200 rounded-lg items-center justify-center py-4">
       <div className="text-2xl font-semibold">Order Summary</div>
@@ -33,17 +40,18 @@ const navigate = useNavigate();
         </div>
         <div className="flex flex-col space-y-2">
           <div>{cartLength}</div>
-          <div>$100</div>
+          <div>${subTotal}</div>
           <div>$10</div>
           <div></div>
-          <div>$200</div>
+          <div>{subTotal}</div>
         </div>
       </div>
       <div
-      onClick={()=>{
-        navigate(cartPath);
-      }}
-       className="bg-green-600 text-white text-center rounded-4xl px-6 py-2">
+        onClick={() => {
+          navigate(cartPath);
+        }}
+        className="bg-green-600 text-white text-center rounded-4xl px-6 py-2"
+      >
         {buttonName}
       </div>
     </div>
