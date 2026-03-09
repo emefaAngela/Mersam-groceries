@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { checkoutSlice, initialState } from "./checkoutSlice";
+import { checkoutSlice } from "./checkoutSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 

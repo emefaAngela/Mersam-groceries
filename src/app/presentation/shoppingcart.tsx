@@ -1,11 +1,14 @@
 import Cart from "./shared/cart";
 import { useSelector } from "react-redux";
 import type { ProductType } from "../../../utils/types";
-
+import { TrashIcon } from "lucide-react";
+import { removefromCart } from "../../../utils/checkoutSlice";
+import { useDispatch } from "react-redux";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state: any) => state.checkout.cartProducts);
   console.log(cartItems);
+  const dispatch = useDispatch();
 
   return (
     <div className="w-full h-full m-0">
@@ -21,6 +24,7 @@ export default function ShoppingCart() {
               <tr>Price</tr>
               <tr>Quantity</tr>
               <tr>Subtotal</tr>
+              <tr>Action</tr>
             </thead>
             <tbody className="flex flex-col space-y-2">
               {cartItems.map((product: ProductType) => (
@@ -42,6 +46,14 @@ export default function ShoppingCart() {
                   <td className="-ml-12 sm:-ml-0"> {product.price}</td>
                   <td className="text-center">{product.price}</td>
                   <td className="  text-left">${product.price}</td>
+                  <td className="text-center flex">
+                    <TrashIcon
+                      className="w-4 h-4"
+                      onClick={() => {
+                        dispatch(removefromCart(product));
+                      }}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
