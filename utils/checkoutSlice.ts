@@ -1,4 +1,5 @@
-import { createSlice,type  PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+// import { usePersistedState } from "../src/hooks/usePersistedState";
 
 interface Product {
   id: number;
@@ -29,7 +30,12 @@ export const checkoutSlice = createSlice({
     addtoCart: (state, action: PayloadAction<Product>) => {
       state.cartProducts.push(action.payload);
       state.productQuantity += 1;
-      console.log(initialState);
+      console.log(
+        "Added to cart:",
+        action.payload,
+        "New quantity:",
+        state.productQuantity,
+      );
     },
     removefromCart: (state, action: PayloadAction<Product>) => {
       state.cartProducts = state.cartProducts.filter(

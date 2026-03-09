@@ -10,7 +10,7 @@ export default function Navbar() {
   const [signInOpen, setSignInOpen] = useState(false);
   const navigate = useNavigate();
   const cartLength = useSelector(
-    (state: any) => state.checkout.productQuantity,
+    (state: any) => state?.checkout?.productQuantity || 0,
   );
   console.log(cartLength);
   return (

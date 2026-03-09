@@ -14,6 +14,7 @@ import {
 } from "../../../utils/checkoutSlice";
 import { type CategoryType, type ProductType } from "../../../utils/types";
 import supabase from "../../../utils/supabase";
+import { useDispatch } from "react-redux";
 
 export default function Homepage() {
   const [signInOpen, setSignInOpen] = useState(false);
@@ -40,6 +41,7 @@ export default function Homepage() {
 
     fetchProducts();
   }, []);
+  const dispatch = useDispatch();
 
   return (
     <div className="w-full h-full flex flex-col space-y-16 ">
@@ -175,12 +177,12 @@ export default function Homepage() {
                   <div className="text-lg text-gray-800 font-medium">
                     GHS {product.price}
                   </div>
-                  <div className="flex space-x-1 w-fit bg-green-200 rounded-full px-2 text-center items-center">
+                  <div className="flex space-x-1 hover-pointer w-fit bg-green-200 rounded-full px-2 text-center items-center">
                     <div></div>
                     <div
-                      className="text-green-500 mouse-pointer"
+                      className="text-green-500 hover-pointer"
                       onClick={() => {
-                        addtoCart(product);
+                        dispatch(addtoCart(product));
                       }}
                     >
                       Add
