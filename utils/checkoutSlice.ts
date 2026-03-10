@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { type CartItem } from "./types";
 // import { usePersistedState } from "../src/hooks/usePersistedState";
 
 interface Product {
@@ -11,9 +12,14 @@ interface Product {
   // add other fields as needed
 }
 
+interface CartProduct {
+  product: Product;
+  quantity: number;
+}
+
 interface CheckoutState {
   productQuantity: number;
-  cartProducts: Product[];
+  cartProducts: CartProduct[];
   couponCode: string;
 }
 
@@ -28,14 +34,15 @@ export const checkoutSlice = createSlice({
   initialState,
   reducers: {
     addtoCart: (state, action: PayloadAction<Product>) => {
-      state.cartProducts.push(action.payload);
-      state.productQuantity += 1;
-      console.log(
-        "Added to cart:",
-        action.payload,
-        "New quantity:",
-        state.productQuantity,
+      const filteredProduct = state.cartProducts.find(
+        (item) => item.product.id !== action.payload.id,
       );
+      if (filteredProduct) {
+        filteredProduct.quantity = (filteredProduct.quantity || 1) + 1;
+      } else {
+        state.cartProducts.push({ product: action.payload, quantity: 1 });
+      }
+      state.productQuantity += 1;
     },
     removefromCart: (state, action: PayloadAction<Product>) => {
       state.cartProducts = state.cartProducts.filter(

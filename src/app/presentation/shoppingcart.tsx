@@ -1,6 +1,6 @@
 import Cart from "./shared/cart";
 import { useSelector } from "react-redux";
-import type { ProductType } from "../../../utils/types";
+import type { CartItem } from "../../../utils/types";
 import { TrashIcon } from "lucide-react";
 import { removefromCart } from "../../../utils/checkoutSlice";
 import { useDispatch } from "react-redux";
@@ -27,30 +27,35 @@ export default function ShoppingCart() {
               <tr>Action</tr>
             </thead>
             <tbody className="flex flex-col space-y-2">
-              {cartItems.map((product: ProductType) => (
+              {cartItems.map((item: CartItem) => (
                 <tr
-                  key={product.id}
+                  key={item.product?.id}
                   className="flex flex-row justify-between sm:px-4 py-2 border-b"
                 >
                   <td className="flex sm:flex-row flex-col space-x-1">
                     <div className="sm:w-16 sm:h-16 h-12 w-12 p-2 border border-0.5 border-gray-200 rounded-md flex justify-center items-center">
-                      <img src={product.image} className="sm:w-16 sm:h-16 " />
+                      <img
+                        src={item.product?.image}
+                        className="sm:w-16 sm:h-16 "
+                      />
                     </div>
                     <div className="flex flex-col space-y-1">
                       <div className="font-semibold text-md">
-                        {product.name}
+                        {item?.product?.name}
                       </div>
                       {/* <div>{product.price}</div> */}
                     </div>
                   </td>
-                  <td className="-ml-12 sm:-ml-0"> {product.price}</td>
-                  <td className="text-center">{product.price}</td>
-                  <td className="  text-left">${product.price}</td>
+                  <td className="-ml-12 sm:-ml-0"> {item?.product?.price}</td>
+                  <td className="text-center">{item?.quantity}</td>
+                  <td className="  text-left">
+                    ${item?.product?.price * item?.quantity}
+                  </td>
                   <td className="text-center flex">
                     <TrashIcon
                       className="w-4 h-4"
                       onClick={() => {
-                        dispatch(removefromCart(product));
+                        dispatch(removefromCart(item.product));
                       }}
                     />
                   </td>
