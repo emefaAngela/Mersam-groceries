@@ -7,8 +7,12 @@ import { useDispatch } from "react-redux";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state: any) => state.checkout.cartProducts);
+  const cartLength = useSelector(
+    (state: any) => state.checkout.cartProducts.length,
+  );
   console.log(cartItems);
   const dispatch = useDispatch();
+  
 
   return (
     <div className="w-full h-full m-0">

@@ -35,10 +35,10 @@ export const checkoutSlice = createSlice({
   reducers: {
     addtoCart: (state, action: PayloadAction<Product>) => {
       const filteredProduct = state.cartProducts.find(
-        (item) => item.product.id !== action.payload.id,
+        (item) => item.product.id == action.payload.id,
       );
       if (filteredProduct) {
-        filteredProduct.quantity = (filteredProduct.quantity || 1) + 1;
+        filteredProduct.quantity += 1;
       } else {
         state.cartProducts.push({ product: action.payload, quantity: 1 });
       }
@@ -46,7 +46,7 @@ export const checkoutSlice = createSlice({
     },
     removefromCart: (state, action: PayloadAction<Product>) => {
       state.cartProducts = state.cartProducts.filter(
-        (product) => product.id !== action.payload.id,
+        (item) => item.product.id !== action.payload.id,
       );
       state.productQuantity -= 1;
     },

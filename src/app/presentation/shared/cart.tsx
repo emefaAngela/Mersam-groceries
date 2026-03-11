@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import type { ProductType } from "../../../../utils/types";
+import type { CartItem, ProductType } from "../../../../utils/types";
 export default function Cart() {
   const cartLength = useSelector(
-    (state: any) => state.checkout.productQuantity,
+    (state: any) => state.checkout.cartProducts.length,
   );
   const cartItems = useSelector((state: any) => state.checkout.cartProducts);
   const subTotal = cartItems.reduce(
-    (total: number, product: ProductType) => total + product.price,
+    (total: number, product: CartItem) =>
+      total + product.product.price * product.quantity,
     0,
   );
   const navigate = useNavigate();
