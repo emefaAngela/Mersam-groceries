@@ -14,12 +14,12 @@ export default function ShoppingCart() {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-full h-full m-0">
+    <div className="w-full h-full m-0 sm:m-auto">
       <div className="w-full flex flex-col justify-center items-center h-48 m-0">
         <h1 className="text-3xl">Shop</h1>
         <span>Home / Shopping Cart</span>
       </div>
-      <div className="flex sm:flex-row w-full  text-xs sm:text-sm flex-col space-y-8  sm:justify-between sm:mx-24  items-center justify-center mb-16">
+      <div className="flex sm:flex-row  w-full  text-xs sm:text-sm flex-col space-y-8  sm:justify-between   items-center justify-center mb-16">
         <div className="flex">
           <table>
             <thead className="bg-yellow-300 h-12 rounded-lg flex flex-row px-4 py-1 space-x-8  sm:space-x-42 justify-center items-center font-semibold">
@@ -49,8 +49,13 @@ export default function ShoppingCart() {
                       {/* <div>{product.price}</div> */}
                     </div>
                   </td>
-                  <td className="-ml-8 sm:-ml-16 flex "> {item?.product?.price}</td>
-                  <td className="-ml-8 sm:-ml-8 text-center">{item?.quantity}</td>
+                  <td className="-ml-8 sm:-ml-16 flex ">
+                    {" "}
+                    {item?.product?.price}
+                  </td>
+                  <td className="-ml-8 sm:-ml-8 text-center">
+                    {item?.quantity}
+                  </td>
                   <td className="-ml-6 sm:-ml-4 text-left">
                     ${item?.product?.price * item?.quantity}
                   </td>
