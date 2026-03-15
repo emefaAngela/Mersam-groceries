@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Cart from "../app/presentation/shared/cart";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../utils/checkoutSlice";
 
 export default function BillingInfoCard() {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +10,10 @@ export default function BillingInfoCard() {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+
+  const dispatch = useDispatch();
+
+
   return (
     <div className="w-full h-full m-0">
       <div className="w-full flex flex-col justify-center items-center h-48 m-0">
@@ -80,6 +86,7 @@ export default function BillingInfoCard() {
               </div>
               <div>
                 <input
+                onClick={()=>{dispatch(createUser({ firstname:firstName, lastname:lastName, email:email, phone:phone }))}}
                   type="checkbox"
                   className="border border-gray-300 rounded-md px-4 py-2"
                 />

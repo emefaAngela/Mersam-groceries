@@ -16,15 +16,18 @@ export const createUser = async ({
       phoneNumber: phoneNumber,
       address: address,
     });
-  } 
-  catch (error) {
+  } catch (error) {
     console.error("Error creating user:", error);
   }
 };
 
 export const getUser = async (email) => {
   try {
-    const { data, error } = await supabase.from("Users").select("*").eq("email", email).single();
+    const { data, error } = await supabase
+      .from("Users")
+      .select("*")
+      .eq("email", email)
+      .single();
     if (error) {
       console.error("Error fetching user:", error);
       return null;
@@ -33,22 +36,23 @@ export const getUser = async (email) => {
   } catch (error) {
     console.error("Error fetching user:", error);
     return null;
-  } 
+  }
 };
 
 export const loginUser = async (email: any, password: any) => {
   try {
-    const { data, error } = await supabase.from("Users")
+    const { data, error } = await supabase
+      .from("Users")
       .select("*")
-      .eq("email", email).eq("password", password).single();    
+      .eq("email", email)
+      .eq("password", password)
+      .single();
     if (error) {
       console.error("Error logging in:", error);
       return null;
-    } 
+    }
     return data;
-  }
-
-    catch (error) { 
+  } catch (error) {
     console.error("Error logging in:", error);
     return null;
   }

@@ -1,4 +1,9 @@
+import supabase from "../../utils/supabase";
+import { type Order } from "../../utils/types";
+
 export async function handleCheckout(email: string, amount: number) {
+
+  
   const response = await fetch(
     "https://myyzytqvzcmfopbgqvfn.supabase.co/functions/v1/payment-api",
     {
@@ -7,7 +12,7 @@ export async function handleCheckout(email: string, amount: number) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: "gelamengor@gmail.com",
+        email: email,
         amount: 1,
       }),
     },
@@ -32,5 +37,6 @@ export async function verifyPayment(reference: string) {
   );
 
   const data = await res.json();
+  return data;
   console.log(data);
 }

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import type { CartItem, ProductType } from "../../../../utils/types";
 import { handleCheckout } from "../../../hooks/usePayment";
 export default function Cart() {
+  const user = useSelector((state: any) => state.checkout.user);
   const cartLength = useSelector(
     (state: any) => state.checkout.cartProducts.length,
   );
@@ -49,10 +50,10 @@ export default function Cart() {
         </div>
       </div>
       <div>
-        {cartPath === "/billing-info" ? (
+        {cartPath.includes("/order-success") ? (
           <div
             onClick={() => {
-              handleCheckout("gelamengor@gmail.com", 1);
+              handleCheckout(user?.email, 1);
             }}
             className="bg-green-600 text-white text-center rounded-4xl px-6 py-2"
           >

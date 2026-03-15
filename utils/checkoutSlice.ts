@@ -17,16 +17,27 @@ interface CartProduct {
   quantity: number;
 }
 
+interface User{
+  //id:number;
+  firstname:string;
+  lastname:string;
+  email:string;
+  phone:string;
+  //address:[city:string, country:string];
+}
+
 interface CheckoutState {
   productQuantity: number;
   cartProducts: CartProduct[];
   couponCode: string;
+  user: User | null;
 }
 
 export const initialState: CheckoutState = {
   productQuantity: 0,
   cartProducts: [],
   couponCode: "",
+  user: null,
 };
 console.log(initialState);
 export const checkoutSlice = createSlice({
@@ -50,7 +61,10 @@ export const checkoutSlice = createSlice({
       );
       state.productQuantity -= 1;
     },
+    createUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+    }
   },
 });
 
-export const { addtoCart, removefromCart } = checkoutSlice.actions;
+export const { addtoCart, removefromCart,createUser } = checkoutSlice.actions;
