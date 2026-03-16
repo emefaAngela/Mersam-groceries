@@ -27,12 +27,15 @@ export async function handleCheckout(email: string, amount: number) {
   }
 }
 
-export async function verifyPayment(reference: string) {
+export async function verifyPayment(reference: string,cartItems:Order["order_details"]) {
   const res = await fetch(
     "https://myyzytqvzcmfopbgqvfn.supabase.co/functions/v1/verify-paystack-payment",
     {
       method: "POST",
-      body: JSON.stringify({ reference }),
+      body: JSON.stringify({ reference,cartItems
+
+       }),
+
     },
   );
 

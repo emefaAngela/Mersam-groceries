@@ -1,37 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { verifyPayment } from "../../../hooks/usePayment";
-import { createOrder } from "../../../hooks/useOrder";
+//import { createOrder } from "../../../hooks/useOrder";
 import { useSelector } from "react-redux";
 
 export default function OrderSuccess() {
+  const hasVerified = useRef(false);
   const cartItems = useSelector((state: any) => state.checkout.cartProducts);
   useEffect(() => {
+    if (hasVerified.current) return;
+    hasVerified.current = true;
     const verify = async () => {
       const params = new URLSearchParams(window.location.search);
       const reference = params.get("reference");
 
       if (!reference) return;
 
-      const data = await verifyPayment(reference);
+      const data = await verifyPayment(reference, cartItems);
 
-      if (data?.data?.status === "success") {
-        console.log("Payment verified successfully:", data);
-
-        await createOrder(
-          1,
-          data.data.amount,
-          cartItems,
-          data.data,
-          new Date(data.data.paid_at),
-        );
-        if (data) {
-          console.log("Order created successfully:", data);
-        } else {
-          console.error("Order creation failed");
-        }
-      } else {
-        console.error("Payment verification failed:", data);
-      }
+      console.log(data);
     };
 
     verify();
