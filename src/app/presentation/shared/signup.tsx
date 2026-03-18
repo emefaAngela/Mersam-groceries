@@ -4,7 +4,7 @@ import SignInModal from "./signin";
 
 import React, { useState } from "react";
 
-export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
+export default function SignUpModal({ isOpen, onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -12,14 +12,13 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
 
-
   //const navigate = useNavigate();
 
+  const [signInOpen, setSignInOpen] = useState(false);
   const handleSignin = () => {
-    onClose();
+    // onClose();
+    setSignInOpen(true);
   };
-
-
   const handleSignUp = () => {
     createUser({ email, password, firstName, lastName, phoneNumber, address });
   };
@@ -27,7 +26,7 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
 
   return (
     <div className="w-full h-full flex justify-center items-center   bg-opacity-50 fixed  z-40">
-      <div className=" flex flex-col space-y-4 items-center z-50 bg-gray-100 my-24 w-1/2  p-6  justify-center rounded-lg">
+      <div className=" flex flex-col space-y-4 items-center z-50 bg-gray-100 my-24 sm:w-1/2  p-6  justify-center rounded-lg">
         <div
           className="w-8 h-8 rounded-full absolute top-52 left-[890px] flex items-center justify-center bg-amber-300 text-black"
           onClick={onClose}
@@ -101,7 +100,15 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
         >
           Sign Up
         </div>
-        <div onClick={handleSignin} className="text-xs text-gray-400">
+        <div
+          onClick={() => {
+            // handleSignin();
+            setTimeout(() => {
+              setSignInOpen(true);
+            }, 0);
+          }}
+          className="text-xs text-gray-400"
+        >
           {" "}
           Already registered? Sign In
         </div>
@@ -109,7 +116,7 @@ export default function SignUpModal({ isOpen, onClose, onOpenSignIn }) {
       <SignInModal
         isOpen={signInOpen}
         onClose={() => {
-          handleSignin;
+          handleSignin();
         }}
       />
     </div>

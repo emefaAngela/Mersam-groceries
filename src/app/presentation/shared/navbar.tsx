@@ -42,21 +42,26 @@ export default function Navbar() {
             Search bar
           </div>
           <div className="flex flex-row space-x-2">
-            <ShoppingBagIcon
-              className="w-4 h-4"
-              onClick={() => {
-                navigate("/cart");
-              }}
-            />
+            <div>
+              <ShoppingBagIcon
+                className="w-4 h-4"
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              />
+            </div>
+
             <div className="text-xs relative bottom-2 right-4 w-4 text-center text-black h-4 bg-white rounded-full">
               {cartLength}
             </div>
-            <UserRound
-              className="w-4 h-4"
-              onClick={() => {
-                setSignUpOpen(true);
-              }}
-            />
+            <div>
+              <UserRound
+                className="w-4 h-4"
+                onClick={() => {
+                  setSignUpOpen(true);
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -86,9 +91,9 @@ export default function Navbar() {
         onClose={() => {
           setSignUpOpen(false);
         }}
-        onOpenSignIn={() => {
-          setSignInOpen(true);
-        }}
+        // onOpenSignIn={() => {
+        //   setSignInOpen(true);
+        // }}
       />
       <SignInModal
         isOpen={signInOpen}
