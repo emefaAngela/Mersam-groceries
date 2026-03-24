@@ -2,17 +2,17 @@ import { ShoppingBagIcon, UserRound, ArrowDown } from "lucide-react";
 import { Button } from "../../../components/button";
 import SignUpModal from "./signup";
 import SignInModal from "./signin";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+//import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { openAuthModal } from "../../../../utils/authModalSlice";
 export default function Navbar() {
-  const [signUpOpen, setSignUpOpen] = useState(false);
-  const [signInOpen, setSignInOpen] = useState(false);
   const navigate = useNavigate();
   const cartLength = useSelector(
     (state: any) => state?.checkout?.cartProducts.length || 0,
   );
   console.log(cartLength);
+  const dispatch = useDispatch();
   return (
     <div className="w-full   flex flex-col space-y-0">
       {/* header */}
@@ -57,9 +57,7 @@ export default function Navbar() {
             <div>
               <UserRound
                 className="w-4 h-4"
-                onClick={() => {
-                  setSignUpOpen(true);
-                }}
+                onClick={() => dispatch(openAuthModal("signin"))}
               />
             </div>
           </div>
@@ -86,21 +84,6 @@ export default function Navbar() {
           <ArrowDown className="w-4 h-4 inline-block" />
         </div>
       </div>
-      <SignUpModal
-        isOpen={signUpOpen}
-        onClose={() => {
-          setSignUpOpen(false);
-        }}
-        // onOpenSignIn={() => {
-        //   setSignInOpen(true);
-        // }}
-      />
-      <SignInModal
-        isOpen={signInOpen}
-        onClose={() => {
-          setSignInOpen(false);
-        }}
-      />
     </div>
   );
 }

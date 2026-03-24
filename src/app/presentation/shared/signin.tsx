@@ -1,25 +1,29 @@
 import { useState } from "react";
-import { loginUser } from "../../../hooks/useUser";
-export default function SignInModal({ isOpen, onClose }) {
+//import { loginUser } from "../../../hooks/useUser";
+
+type Props = {
+  switchToSignUp: () => void;
+};
+export default function SignInModal({ switchToSignUp }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSignIn = async () => {
-    try {
-      const response = await loginUser(email, password);
-      console.log("Login successful:", response);
-      // Handle successful login (e.g., redirect, show success message)
-    } catch (error) {
-      console.error("Login failed:", error);
-      // Handle login failure (e.g., show error message)
-    }
-  };
-  if (!isOpen) return null;
+  // const handleSignIn = async () => {
+  //   try {
+  //     const response = await loginUser(email, password);
+  //     console.log("Login successful:", response);
+  //     // Handle successful login (e.g., redirect, show success message)
+  //   } catch (error) {
+  //     console.error("Login failed:", error);
+  //     // Handle login failure (e.g., show error message)
+  //   }
+  // };
+  //if (!isOpen) return null;
   return (
     <div className="w-full h-full flex justify-center items-center  bg-black opacity-50 fixed  z-40">
       <div className=" flex flex-col space-y-4 items-center z-50 bg-gray-300 p-6  justify-center rounded-lg">
         <div
           className="w-8 h-8 rounded-full absolute top-52 left-[890px] flex items-center justify-center bg-amber-300 text-black"
-          onClick={onClose}
+          //onClick={onClose}
         >
           X
         </div>
@@ -49,7 +53,7 @@ export default function SignInModal({ isOpen, onClose }) {
           />
         </div>
         <div
-          onClick={handleSignIn}
+          onClick={switchToSignUp}
           className="bg-green-800 text-white px-8 py-2 rounded-full cursor-pointer"
         >
           Sign In
