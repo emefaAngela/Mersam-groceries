@@ -2,6 +2,7 @@ import * as React from "react";
 import { cn } from "../app/lib/utils";
 import Navbar from "../app/presentation/shared/navbar";
 import { FacebookIcon, InstagramIcon } from "lucide-react";
+import AuthModal from "./authModal";
 
 function Container({
   className,
@@ -11,6 +12,7 @@ function Container({
   return (
     <div className="w-full ">
       <Navbar />
+      <AuthModal />
       <div
         className={cn("w-full h-full px-10 sm:px-24 m-0 bg-white", className)}
         {...props}

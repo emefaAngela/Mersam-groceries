@@ -16,6 +16,7 @@ export const authModalSlice = createSlice({
   initialState,
   reducers: {
     openAuthModal: (state, action: PayloadAction<AuthView>) => {
+      console.log("kofi");
       state.isOpen = true;
       state.view = action.payload;
     },

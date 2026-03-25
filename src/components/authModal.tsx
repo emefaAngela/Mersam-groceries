@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function AuthModal() {
   const dispatch = useDispatch();
-  const { isOpen, view } = useSelector((state: any) => state.AuthModal);
+  const authModal = useSelector((state: any) => state.authModal);
+  const { isOpen, view } = authModal;
 
   if (!isOpen) return null;
 
@@ -16,6 +17,11 @@ export default function AuthModal() {
         {view === "signin" && (
           <SignInModal
             switchToSignUp={() => dispatch(switchAuthview("signup"))}
+          />
+        )}
+        {view === "signup" && (
+          <SignUpModal
+            switchToSignIn={() => dispatch(switchAuthview("signin"))}
           />
         )}
       </div>

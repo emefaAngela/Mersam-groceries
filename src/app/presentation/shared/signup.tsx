@@ -3,8 +3,11 @@ import { createUser } from "../../../hooks/useUser";
 import SignInModal from "./signin";
 
 import React, { useState } from "react";
+type Props = {
+  switchToSignIn: () => void;
+};
 
-export default function SignUpModal({ isOpen, onClose }) {
+export default function SignUpModal({ switchToSignIn }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -14,22 +17,19 @@ export default function SignUpModal({ isOpen, onClose }) {
 
   //const navigate = useNavigate();
 
-  const [signInOpen, setSignInOpen] = useState(false);
-  const handleSignin = () => {
-    // onClose();
-    setSignInOpen(true);
-  };
   const handleSignUp = () => {
     createUser({ email, password, firstName, lastName, phoneNumber, address });
   };
-  if (!isOpen) return null;
+  //if (!isOpen) return null;
 
   return (
-    <div className="w-full h-full flex justify-center items-center   bg-opacity-50 fixed  z-40">
+    <div
+    //className="w-full h-full flex justify-center items-center   bg-opacity-50 fixed  z-40"
+    >
       <div className=" flex flex-col space-y-4 items-center z-50 bg-gray-100 my-24 sm:w-1/2  p-6  justify-center rounded-lg">
         <div
           className="w-8 h-8 rounded-full absolute top-52 left-[890px] flex items-center justify-center bg-amber-300 text-black"
-          onClick={onClose}
+          //onClick={onClose}
         >
           X
         </div>
@@ -100,25 +100,11 @@ export default function SignUpModal({ isOpen, onClose }) {
         >
           Sign Up
         </div>
-        <div
-          onClick={() => {
-            // handleSignin();
-            setTimeout(() => {
-              setSignInOpen(true);
-            }, 0);
-          }}
-          className="text-xs text-gray-400"
-        >
+        <div onClick={switchToSignIn} className="text-xs text-gray-400">
           {" "}
           Already registered? Sign In
         </div>
       </div>
-      <SignInModal
-        isOpen={signInOpen}
-        onClose={() => {
-          handleSignin();
-        }}
-      />
     </div>
   );
 }
