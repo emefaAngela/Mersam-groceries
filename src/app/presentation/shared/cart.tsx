@@ -32,6 +32,7 @@ export default function Cart() {
   }
   return (
     <div className="flex flex-col w-72 h-96 space-y-4  border-1 border-gray-200 rounded-lg items-center justify-center py-4">
+      
       <div className="text-2xl font-semibold">Order Summary</div>
       <div className="grid grid-cols-2 px-10 gap-32">
         <div className="flex flex-col space-y-2">

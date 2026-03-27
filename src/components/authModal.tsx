@@ -18,7 +18,7 @@ export default function AuthModal() {
           <SignInModal
             switchToSignUp={() => dispatch(switchAuthview("signup"))}
           />
-        )}
+        )} 
         {view === "signup" && (
           <SignUpModal
             switchToSignIn={() => dispatch(switchAuthview("signin"))}
