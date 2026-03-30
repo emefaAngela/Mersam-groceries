@@ -20,7 +20,7 @@ export default function ShoppingCart() {
         <span>Home / Shopping Cart</span>
       </div>
       {cartLength === 0 ? (
-        <div className="w-full flex items-center justify-center">No products</div>
+        <div className="w-full flex items-center justify-center my-12">No products</div>
       ) : (
         <div>
           <div className="flex sm:flex-row  w-full  text-xs sm:text-sm flex-col space-y-8  sm:justify-between   items-center justify-center mb-16">

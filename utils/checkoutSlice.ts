@@ -17,12 +17,12 @@ interface CartProduct {
   quantity: number;
 }
 
-interface User{
+interface User {
   //id:number;
-  firstname:string;
-  lastname:string;
-  email:string;
-  phone:string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
   //address:[city:string, country:string];
 }
 
@@ -63,8 +63,38 @@ export const checkoutSlice = createSlice({
     },
     createUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
-    }
+    },
+    increaseQuantity: (state, action: PayloadAction<Product>) => {
+      const filteredProduct = state.cartProducts.find(
+        (item) => item.product.id == action.payload.id,
+      );
+      if (filteredProduct) {
+        filteredProduct.quantity += 1;
+        state.productQuantity += 1;
+      }
+    },
+    decreaseQuantity: (state, action: PayloadAction<Product>) => {
+      const filteredProduct = state.cartProducts.find(
+        (item) => item.product.id == action.payload.id,
+      );
+      if (filteredProduct) {
+        if (filteredProduct.quantity > 1) {
+          filteredProduct.quantity -= 1;
+        } else {
+          state.cartProducts = state.cartProducts.filter(
+            (item) => item.product.id !== action.payload.id,
+          );
+        }
+        state.productQuantity -= 1;
+      }
+    },
   },
 });
 
-export const { addtoCart, removefromCart,createUser } = checkoutSlice.actions;
+export const {
+  addtoCart,
+  removefromCart,
+  createUser,
+  increaseQuantity,
+  decreaseQuantity,
+} = checkoutSlice.actions;

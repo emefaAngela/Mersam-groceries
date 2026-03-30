@@ -4,9 +4,12 @@ import { useParams } from "react-router-dom";
 import {
   addtoCart,
   removefromCart,
+  increaseQuantity,
+  decreaseQuantity,
 } from "../../../utils/checkoutSlice";
 import { useDispatch } from "react-redux";
 import type { ProductType } from "../../../utils/types";
+import { useSelector } from "react-redux";
 export default function ProductDetails() {
   //const navigate = useNavigate();
   const [product, setProduct] = useState<ProductType | null>(null);
@@ -14,7 +17,12 @@ export default function ProductDetails() {
   // const cartLength = useSelector(
   //   (state: any) => state.checkout.productQuantity,
   // );
-  // const cartProducts = useSelector((state: any) => state.checkout.cartProducts);
+  const cartProducts = useSelector((state: any) => state.checkout.cartProducts);
+  const productInCart = cartProducts.find(
+    (item: any) => item.product.id === product?.id,
+  );
+  const productQuantity = productInCart ? productInCart.quantity : 0;
+  console.log(productQuantity);
   // console.log(cartProducts);
 
   const { productId } = useParams();
@@ -45,9 +53,9 @@ export default function ProductDetails() {
           Home / Shop / {product?.category} / {product?.name}
         </span>
       </div>
-      <div className="flex flex-col justify-center items-center m-24">
+      <div className="flex flex-col justify-center items-center sm:m-24 m-8">
         {product && (
-          <div className="flex flex-row space-x-10">
+          <div className="flex sm:flex-row flex-col sm:space-x-10 space-y-8">
             <div className="border border-0.5 border-gray-200 w-72 h-72">
               <img className="w-64 h-64" src={product.image} />
             </div>
@@ -68,16 +76,16 @@ export default function ProductDetails() {
                 <div className="flex flex-row space-x-2 px-2 py-0.5 border rounded-full">
                   <div
                     onClick={() => {
-                      dispatch(removefromCart(product));
+                      dispatch(decreaseQuantity(product));
                       console.log("removed from cart");
                     }}
                   >
                     -
                   </div>
-                  <div>0</div>
+                  <div>{productQuantity}</div>
                   <div
                     onClick={() => {
-                      dispatch(addtoCart(product));
+                      dispatch(increaseQuantity(product));
                       console.log("added to cart");
                     }}
                   >

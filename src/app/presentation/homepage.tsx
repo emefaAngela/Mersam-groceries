@@ -71,10 +71,17 @@ export default function Homepage() {
           </p>
 
           <div className="flex space-x-4">
-            <Button className="bg-green-700 text-white px-4 ">Shop Now</Button>
-            <Button className="text-black bg-white border px-4">
-              View All Products
+            <Button
+              className="bg-green-700 text-white px-4 "
+              onClick={() => {
+                navigate("/shop");
+              }}
+            >
+              Shop Now
             </Button>
+            {/* <Button className="text-black bg-white border px-4">
+              View All Products
+            </Button> */}
           </div>
         </div>
 
@@ -159,6 +166,9 @@ export default function Homepage() {
         <div className="w-full flex flex-row space-x-4 overflow-auto">
           {productList.map((product: ProductType) => (
             <div
+              onClick={() => {
+                navigate("/product-details/" + product.id);
+              }}
               key={product.id}
               className="flex-none flex flex-col space-y-4 sm:w-52 w-52 h-68 border border-gray-200 rounded-sm p-4"
             >
