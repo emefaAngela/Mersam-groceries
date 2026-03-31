@@ -54,6 +54,7 @@ export default function ProductDetails() {
           Home / Shop / {product?.category} / {product?.name}
         </span>
       </div>
+      <div>{!product && <p>Loading...</p>}</div>
       <div className="flex flex-col justify-center items-center sm:m-24 m-8">
         {product && (
           <div className="flex sm:flex-row flex-col sm:space-x-10 space-y-8">
