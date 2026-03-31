@@ -3,15 +3,16 @@ import supabase from "../../../utils/supabase";
 import { useParams } from "react-router-dom";
 import {
   addtoCart,
-  removefromCart,
+  //removefromCart,
   increaseQuantity,
   decreaseQuantity,
 } from "../../../utils/checkoutSlice";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import type { ProductType } from "../../../utils/types";
 import { useSelector } from "react-redux";
 export default function ProductDetails() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const [product, setProduct] = useState<ProductType | null>(null);
   const dispatch = useDispatch();
   // const cartLength = useSelector(
@@ -101,7 +102,13 @@ export default function ProductDetails() {
                 >
                   Add to cart
                 </div>
-                <div className="bg-yellow-500 text-black rounded-full pt-1.5 text-xs px-2 py-0.5 text-center">
+                <div
+                  onClick={() => {
+                    dispatch(addtoCart(product));
+                    navigate("/billing-info");
+                  }}
+                  className="bg-yellow-500 text-black rounded-full pt-1.5 text-xs px-2 py-0.5 text-center"
+                >
                   Buy now
                 </div>
               </div>
