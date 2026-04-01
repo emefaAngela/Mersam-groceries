@@ -23,6 +23,10 @@ export default function Cart() {
       buttonName = "Proceed to Checkout";
       break;
     case "/billing-info":
+      cartPath = "/delivery-info";
+      buttonName = "Proceed to Checkout";
+      break;
+    case "/delivery-info":
       cartPath = "/order-success";
       buttonName = "Place Order";
       break;
